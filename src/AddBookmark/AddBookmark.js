@@ -1,4 +1,5 @@
 import React, { Component } from  'react';
+import BookmarksContext from '../BookmarksContext'
 import config from '../config'
 import './AddBookmark.css';
 
@@ -14,6 +15,8 @@ class AddBookmark extends Component {
   state = {
     error: null,
   };
+
+  static contextType = BookmarksContext
 
   handleSubmit = e => {
     e.preventDefault()
@@ -49,7 +52,7 @@ class AddBookmark extends Component {
         url.value = ''
         description.value = ''
         rating.value = ''
-        this.props.onAddBookmark(data)
+        this.context.addBookmark(data)
       })
       .catch(error => {
         this.setState({ error })
